@@ -1,0 +1,15 @@
+Hranol, 2, Cetverec -> Ctverec
+    6, chyba super() konstruktor
+    9, pocetHranolu je final, teda je konstanta, nemozeme ju incrementovat
+    29, pocetHranolu nie je static, teda neexistuje bez objektu
+Ctverec, 17, konstruktor nevie, ktora hrana je ktora
+Pole, 30, hasNextFloat -> hasNextBoolean
+    37, objekt pole sa nikde nevytvara, a preto je mojeHranoly null
+    38, pocet hranolov nebude nikdy vyssi ako velkost mojeHranoly
+    41, prepis "delka"
+    46, nazov vypoctiObjem pre vypocet obsahu
+    49, vypoctiObsah neexistuje v triede Hranol, a pretoze je zly extends nevie to najst ani v triede Ctverec
+    53, nazov vypoctiObsahPodstavy pre vypocet objemu
+    66, nikdy toto nenastane, pretoze min = 0
+    77, chybny for loop
+    79, = -> ==

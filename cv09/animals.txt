@@ -1,0 +1,5 @@
+CatImpl{age=5}
+DogImpl{age=5}
+PigImpl{age=5}
+CowImpl{age=5}
+GoatImpl{age=5}
