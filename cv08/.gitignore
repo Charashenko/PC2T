@@ -1,0 +1,4 @@
+# Project exclude paths
+*
+!.gitignore
+!/db-connection/
