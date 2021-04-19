@@ -22,16 +22,14 @@ public class Main extends JFrame {
             JButton pressedBtn = (JButton) e.getSource();
             label.setText(label.getText() + pressedBtn.getText());
         };
-        ActionListener pressedEq = e -> {
-            ScriptEngineManager mngr = new ScriptEngineManager();
-            ScriptEngine engine = mngr.getEngineByName("JavaScript");
+        beq.addActionListener(e -> {
+            ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
             try {
                 label.setText(String.valueOf(engine.eval(label.getText())));
             } catch (ScriptException scriptException) {
                 scriptException.printStackTrace();
             }
-        };
-        beq.addActionListener(pressedEq);
+        });
         label.setHorizontalAlignment(JLabel.RIGHT);
         label.setBorder(new BasicBorders.ButtonBorder(Color.DARK_GRAY, Color.BLACK, Color.DARK_GRAY, Color.BLACK));
         root.setSize(300, 200);
