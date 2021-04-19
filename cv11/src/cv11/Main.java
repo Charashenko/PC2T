@@ -30,54 +30,25 @@ public class Main extends JFrame {
         JButton beq = new JButton("=");
         ActionListener pressedBtnEvent = e -> {
             JButton pressedBtn = (JButton) e.getSource();
-            switch (label.getText().charAt(label.getText().length()-1)){
-                case '+':
-                    if(pressedBtn.getText().charAt(0) == '-'){
-                        label.setText(label.getText().substring(0, label.getText().length()-1) + "-");
-                    }
-                    else if (pressedBtn.getText().charAt(0) != '+') {
-                        label.setText(label.getText() + pressedBtn.getText());
-                    }
-                    break;
-                case '-':
-                    if(pressedBtn.getText().charAt(0) == '+'){
-                        label.setText(label.getText().substring(0, label.getText().length()-1) + "+");
-                    }
-                    else if (pressedBtn.getText().charAt(0) != '-') {
-                        label.setText(label.getText() + pressedBtn.getText());
-                    }
-                    break;
-                default:
-                    label.setText(label.getText() + pressedBtn.getText());
-                    break;
-            }
+            label.setText(label.getText() + pressedBtn.getText());
         };
         ActionListener pressedEq = e -> {
-            String stringToEvaluate = label.getText();
-            if(stringToEvaluate.charAt(stringToEvaluate.length()-1) == '+' ||
-                    stringToEvaluate.charAt(stringToEvaluate.length()-1) == '-') {
-                stringToEvaluate = stringToEvaluate + "0";
-            }
             ScriptEngineManager mngr = new ScriptEngineManager();
             ScriptEngine engine = mngr.getEngineByName("JavaScript");
             try {
-                label.setText(String.valueOf(engine.eval(stringToEvaluate)));
+                label.setText(String.valueOf(engine.eval(label.getText())));
             } catch (ScriptException scriptException) {
                 scriptException.printStackTrace();
             }
         };
-
         beq.addActionListener(pressedEq);
-
         label.setHorizontalAlignment(JLabel.RIGHT);
         label.setBorder(new BasicBorders.ButtonBorder(Color.DARK_GRAY, Color.BLACK, Color.DARK_GRAY, Color.BLACK));
-
         root.setSize(300, 200);
         root.setResizable(false);
         root.setTitle("Kalkulacka");
         root.setLayout(new BorderLayout());
         root.getContentPane().add(label, BorderLayout.NORTH);
-
         buttonPanel.setLayout(new GridLayout(3, 3));
         buttonPanel.add(b0);
         buttonPanel.add(b1);
@@ -94,7 +65,6 @@ public class Main extends JFrame {
         for(Component c : buttonPanel.getComponents()){
             ((JButton) c).addActionListener(pressedBtnEvent);
         }
-
         root.getContentPane().add(buttonPanel);
         root.add(beq, BorderLayout.SOUTH);
         root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
