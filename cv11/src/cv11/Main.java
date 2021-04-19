@@ -18,16 +18,14 @@ public class Main extends JFrame {
         JButton bplus = new JButton("+");
         JButton bminus = new JButton("-");
         JButton beq = new JButton("=");
-        ActionListener pressedBtnEvent = e -> {
-            JButton pressedBtn = (JButton) e.getSource();
-            label.setText(label.getText() + pressedBtn.getText());
-        };
+        ActionListener pressedBtnEvent = e -> label.setText(label.getText() + ((JButton) e.getSource()).getText());
         beq.addActionListener(e -> {
             ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
             try {
                 label.setText(String.valueOf(engine.eval(label.getText())));
             } catch (ScriptException scriptException) {
                 scriptException.printStackTrace();
+                label.setText(" ");
             }
         });
         label.setHorizontalAlignment(JLabel.RIGHT);
