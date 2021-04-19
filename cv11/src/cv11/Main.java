@@ -15,16 +15,6 @@ public class Main extends JFrame {
     public static void main(String[] args) {
         JFrame root = new JFrame();
         JPanel buttonPanel = new JPanel();
-        JButton b1 = new JButton("1");
-        JButton b2 = new JButton("2");
-        JButton b3 = new JButton("3");
-        JButton b4 = new JButton("4");
-        JButton b5 = new JButton("5");
-        JButton b6 = new JButton("6");
-        JButton b7 = new JButton("7");
-        JButton b8 = new JButton("8");
-        JButton b9 = new JButton("9");
-        JButton b0 = new JButton("0");
         JButton bplus = new JButton("+");
         JButton bminus = new JButton("-");
         JButton beq = new JButton("=");
@@ -50,21 +40,15 @@ public class Main extends JFrame {
         root.setLayout(new BorderLayout());
         root.getContentPane().add(label, BorderLayout.NORTH);
         buttonPanel.setLayout(new GridLayout(3, 3));
-        buttonPanel.add(b0);
-        buttonPanel.add(b1);
-        buttonPanel.add(b2);
-        buttonPanel.add(b3);
-        buttonPanel.add(b4);
-        buttonPanel.add(b5);
-        buttonPanel.add(b6);
-        buttonPanel.add(b7);
-        buttonPanel.add(b8);
-        buttonPanel.add(b9);
-        buttonPanel.add(bplus);
-        buttonPanel.add(bminus);
-        for(Component c : buttonPanel.getComponents()){
-            ((JButton) c).addActionListener(pressedBtnEvent);
+        for (int i = 0; i < 10; i++) {
+            JButton button = new JButton(String.valueOf(i));
+            button.addActionListener(pressedBtnEvent);
+            buttonPanel.add(button);
         }
+        bplus.addActionListener(pressedBtnEvent);
+        buttonPanel.add(bplus);
+        bminus.addActionListener(pressedBtnEvent);
+        buttonPanel.add(bminus);
         root.getContentPane().add(buttonPanel);
         root.add(beq, BorderLayout.SOUTH);
         root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
