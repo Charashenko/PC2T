@@ -4,9 +4,10 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicBorders;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Collections;
+import java.util.List;
 
 public class Main extends JFrame {
 
@@ -17,7 +18,11 @@ public class Main extends JFrame {
         JPanel buttonPanel = new JPanel();
         JButton bplus = new JButton("+");
         JButton bminus = new JButton("-");
+        JButton bmult = new JButton("*");
+        JButton bdiv = new JButton("/");
+        JButton bmod = new JButton("%");
         JButton beq = new JButton("=");
+        List<JButton> opBtns = List.of(bplus, bminus, bmult, bdiv, bmod);
         ActionListener pressedBtnEvent = e -> label.setText(label.getText() + ((JButton) e.getSource()).getText());
         beq.addActionListener(e -> {
             ScriptEngine engine = new ScriptEngineManager().getEngineByName("JavaScript");
@@ -28,8 +33,9 @@ public class Main extends JFrame {
                 label.setText(" ");
             }
         });
-        label.setHorizontalAlignment(JLabel.RIGHT);
-        label.setBorder(new BasicBorders.ButtonBorder(Color.DARK_GRAY, Color.BLACK, Color.DARK_GRAY, Color.BLACK));
+        label.setHorizontalAlignment(JLabel.CENTER);
+        label.getInsets().set(10,0,10,0);
+        label.setFont(new Font("", Font.BOLD, 25));
         root.setSize(300, 200);
         root.setResizable(false);
         root.setTitle("Kalkulacka");
@@ -41,10 +47,10 @@ public class Main extends JFrame {
             button.addActionListener(pressedBtnEvent);
             buttonPanel.add(button);
         }
-        bplus.addActionListener(pressedBtnEvent);
-        buttonPanel.add(bplus);
-        bminus.addActionListener(pressedBtnEvent);
-        buttonPanel.add(bminus);
+        for (JButton btn : opBtns){
+            btn.addActionListener(pressedBtnEvent);
+            buttonPanel.add(btn);
+        }
         root.getContentPane().add(buttonPanel);
         root.add(beq, BorderLayout.SOUTH);
         root.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
